@@ -1,0 +1,10 @@
+                     precision    recall  f1-score   support
+
+    Active movement       1.00      0.83      0.90        23
+            Failure       1.00      1.00      1.00        27
+Initial disturbance       0.89      1.00      0.94        33
+             Stable       1.00      1.00      1.00        31
+
+           accuracy                           0.96       114
+          macro avg       0.97      0.96      0.96       114
+       weighted avg       0.97      0.96      0.96       114

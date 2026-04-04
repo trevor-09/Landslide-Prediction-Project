@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ place_name }} Dashboard - Landslide Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <p><a href="/" style="color: white; text-decoration: none;">&larr; Back to Home</a></p>
+            <h1>{{ place_name }} Analytics</h1>
+            <p>Full Technical Analysis and Model Details</p>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- General Data Insights Section -->
+        <section class="section-title">
+            <h1 style="font-size: 2.8rem; margin-bottom: 0.5rem; color: #0f172a;">Project Analysis Dashboard</h1>
+            <p style="font-size: 1.2rem; color: #64748b;">Technical visualizations and simplified logic for the Final Project Report.</p>
+        </section>
+
+        <section class="analytics-grid">
+            <!-- EDA: Distribution -->
+            <div class="insight-card">
+                <h3 style="color: #0369a1;">{{ explanations['general']['distribution']['title'] }}</h3>
+                <div class="explanation-box" style="background: #f0f9ff; border-left: 4px solid #0ea5e9; margin-bottom: 1.5rem;">
+                    <p><strong>Goal:</strong> {{ explanations['general']['distribution']['purpose'] }}</p>
+                    <p>{{ explanations['general']['distribution']['text'] }}</p>
+                </div>
+                <div class="plot-container">
+                    <img src="{{ url_for('static', filename=place_name + '_category_dist.png') }}" alt="Data Balance">
+                </div>
+                <div class="explanation-box" style="margin-top: 1.5rem; background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <p style="color: #0f172a; font-weight: 600;">Project Report Summary:</p>
+                    <p style="color: #475569; font-style: italic;">"{{ explanations['general']['distribution']['report_summary'] }}"</p>
+                </div>
+            </div>
+
+            <!-- EDA: Heatmap -->
+            <div class="insight-card">
+                <h3 style="color: #0369a1;">{{ explanations['general']['correlation']['title'] }}</h3>
+                <div class="explanation-box" style="background: #f0f9ff; border-left: 4px solid #0ea5e9; margin-bottom: 1.5rem;">
+                    <p><strong>Goal:</strong> {{ explanations['general']['correlation']['purpose'] }}</p>
+                    <p>{{ explanations['general']['correlation']['text'] }}</p>
+                </div>
+                <div class="plot-container">
+                    <img src="{{ url_for('static', filename=place_name + '_heatmap.png') }}" alt="Sensor Links">
+                </div>
+                <div class="explanation-box" style="margin-top: 1.5rem; background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <p style="color: #0f172a; font-weight: 600;">Project Report Summary:</p>
+                    <p style="color: #475569; font-style: italic;">"{{ explanations['general']['correlation']['report_summary'] }}"</p>
+                </div>
+            </div>
+
+            <!-- EDA: t-SNE -->
+            <div class="insight-card">
+                <h3 style="color: #0369a1;">{{ explanations['general']['tsne']['title'] }}</h3>
+                <div class="explanation-box" style="background: #f0f9ff; border-left: 4px solid #0ea5e9; margin-bottom: 1.5rem;">
+                    <p><strong>Goal:</strong> {{ explanations['general']['tsne']['purpose'] }}</p>
+                    <p>{{ explanations['general']['tsne']['text'] }}</p>
+                </div>
+                <div class="plot-container">
+                    <img src="{{ url_for('static', filename=place_name + '_tsne.png') }}" alt="Data Clusters">
+                </div>
+                <div class="explanation-box" style="margin-top: 1.5rem; background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <p style="color: #0f172a; font-weight: 600;">Project Report Summary:</p>
+                    <p style="color: #475569; font-style: italic;">"{{ explanations['general']['tsne']['report_summary'] }}"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Comparison Section -->
+        <section class="section-title" style="margin-top: 5rem;">
+            <h2>Training Quality & Performance Metrics</h2>
+            <p>Evaluating algorithm reliability using standard industry scores.</p>
+        </section>
+
+        <div class="insight-card" style="margin-bottom: 4rem; overflow: hidden; padding: 0;">
+            <!-- Embedded Definitions Guide -->
+            <div style="background: #f8fafc; padding: 1.5rem; border-bottom: 1px solid #e2e8f0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <strong style="color: #0369a1;">Accuracy:</strong>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0.2rem 0 0 0;">{{ explanations['metrics']['accuracy']['desc'] }}</p>
+                </div>
+                <div>
+                    <strong style="color: #0369a1;">Precision:</strong>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0.2rem 0 0 0;">{{ explanations['metrics']['precision']['desc'] }}</p>
+                </div>
+                <div>
+                    <strong style="color: #0369a1;">Recall:</strong>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0.2rem 0 0 0;">{{ explanations['metrics']['recall']['desc'] }}</p>
+                </div>
+                <div>
+                    <strong style="color: #0369a1;">F1-Score:</strong>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0.2rem 0 0 0;">{{ explanations['metrics']['f1']['desc'] }}</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #ffffff; text-align: left;">
+                            <th style="padding: 1.5rem; border-bottom: 2px solid #e2e8f0;">Algorithm</th>
+                            <th style="padding: 1.5rem; border-bottom: 2px solid #e2e8f0;">Accuracy</th>
+                            <th style="padding: 1.5rem; border-bottom: 2px solid #e2e8f0;">Precision</th>
+                            <th style="padding: 1.5rem; border-bottom: 2px solid #e2e8f0;">Recall</th>
+                            <th style="padding: 1.5rem; border-bottom: 2px solid #e2e8f0;">F1-Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in comparison_data %}
+                        <tr style="border-bottom: 1px solid #f1f5f9; {{ 'background: #f0f9ff; font-weight: bold; border-left: 5px solid #0ea5e9;' if row['Model'] == best_model_name else '' }}">
+                            <td style="padding: 1.5rem;">{{ row['Model'] }}</td>
+                            <td style="padding: 1.5rem;">{{ "%.2f"|format(row['Accuracy']|float * 100) }}%</td>
+                            <td style="padding: 1.5rem;">{{ "%.2f"|format(row['Precision']|float * 100) }}%</td>
+                            <td style="padding: 1.5rem;">{{ "%.2f"|format(row['Recall']|float * 100) }}%</td>
+                            <td style="padding: 1.5rem;">{{ "%.2f"|format(row['F1-Score']|float * 100) }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Dynamic Best Model Explanation -->
+            <div class="explanation-box" style="margin: 1.5rem; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;">
+                <h4 style="color: #0369a1; margin-top: 0;">Why is {{ best_model_name }} the Leader?</h4>
+                <p style="color: #475569; font-size: 1rem; line-height: 1.5;">{{ best_model_reason|safe }}</p>
+                <p style="color: #64748b; font-size: 0.9rem; margin-top: 1rem; font-style: italic;">Note: The leader is chosen based on the highest overall **Accuracy** and **F1-Score** during training.</p>
+            </div>
+        </div>
+
+        <!-- Detailed Model Analysis Section -->
+        <section class="section-title">
+            <h2>Detailed Algorithmic Logic</h2>
+            <p>Step-by-step breakdown of how each model classifies landslides.</p>
+        </section>
+
+        {% for model in explanations['models'] %}
+        <div class="insight-card" style="margin-bottom: 4rem; padding: 2.5rem;">
+            <div style="border-bottom: 2px solid #f1f5f9; margin-bottom: 2rem; padding-bottom: 1rem;">
+                <h2 style="margin: 0; color: #0f172a;">{{ model['name'] }}</h2>
+            </div>
+            
+            <div style="margin-bottom: 3rem; background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
+                <p style="color: #0369a1; font-weight: 600; margin-bottom: 0.5rem;">How it works:</p>
+                <p style="color: #475569; font-size: 1.1rem; line-height: 1.6; margin: 0;">{{ model['working'] }}</p>
+            </div>
+
+            <div class="analytics-grid" style="gap: 2.5rem;">
+                {% for plot in model['plots'] %}
+                <div style="background: #ffffff; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <h4 style="margin: 0 0 1rem 0; color: #0369a1;">Visual: {{ plot['title'] }}</h4>
+                    <div class="plot-container" style="background: white; padding: 1rem; border: 1px solid #f1f5f9; margin-bottom: 1.5rem;">
+                        <img src="{{ url_for('static', filename=place_name + '_' + plot['filename_suffix']) }}" alt="{{ plot['title'] }}" style="max-height: 450px; border-radius: 4px;">
+                    </div>
+                    <div style="background: #f0f9ff; padding: 1rem; border-left: 4px solid #0ea5e9; color: #334155;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Analysis:</strong> {{ plot['purpose'] }}</p>
+                        <p style="margin: 0;">{{ plot['desc'] }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div style="text-align: center; margin-bottom: 6rem;">
+            <a href="/predict/{{ place_name }}" class="btn btn-primary" style="font-size: 1.3rem; padding: 1.2rem 4rem; box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);">Test Prediction for {{ place_name }} &rarr;</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Landslide Prediction System. Technical Analysis Dashboard.</p>
+    </footer>
+</body>
+</html>

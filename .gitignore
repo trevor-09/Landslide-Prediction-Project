@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+env/
+.env
+
+# Flask
+instance/
+.webassets-cache/
+
+# Large Model weights (keep if you need them for deployment)
+# models/
+# static/
+
+# Local data (Private)
+# *.xlsx
+
+# OS files
+.DS_Store
+Thumbs.db

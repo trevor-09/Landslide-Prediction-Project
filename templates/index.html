@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landslide Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="home-body">
+    <header>
+        <div class="header-container">
+            <h1>Landslide Prediction System</h1>
+            <p>Advanced Sensor-Based Risk Assessment</p>
+        </div>
+    </header>
+
+    <main class="home-main">
+        <div class="location-cards">
+            <div class="location-card">
+                <div class="card-image veeramalakunnu"></div>
+                <div class="card-content">
+                    <h2>Veeramalakunnu</h2>
+                    <p>View the analytics, model insights, and make real-time predictions for the Veeramalakunnu site.</p>
+                    <div class="card-actions">
+                        <a href="/dashboard/Veeramalakunnu" class="btn btn-secondary">Analytics Dashboard</a>
+                        <a href="/predict/Veeramalakunnu" class="btn btn-primary">Predict Risk</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="card-image thekkil"></div>
+                <div class="card-content">
+                    <h2>Thekkil</h2>
+                    <p>Examine the sensor data trends, model performance, and assess landslide risks for the Thekkil site.</p>
+                    <div class="card-actions">
+                        <a href="/dashboard/Thekkil" class="btn btn-secondary">Analytics Dashboard</a>
+                        <a href="/predict/Thekkil" class="btn btn-primary">Predict Risk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Landslide Prediction Project. Built for Safety & Research.</p>
+    </footer>
+</body>
+</html>

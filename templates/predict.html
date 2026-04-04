@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Risk - {{ place_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <p><a href="/" style="color: white; text-decoration: none;">&larr; Back to Home</a></p>
+            <h1>{{ place_name }} Risk Prediction</h1>
+            <p>Input Sensor Data for Real-Time Landslide Assessment</p>
+        </div>
+    </header>
+
+    <main class="predict-container">
+        <form action="/predict/{{ place_name }}" method="post" class="prediction-form" autocomplete="off">
+            <div class="form-group">
+                <label for="Temp">Atmospheric Temperature (Celsius)</label>
+                <input type="number" step="any" name="Temp" id="Temp" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Humidity">Atmospheric Humidity (Percentage)</label>
+                <input type="number" step="any" name="Humidity" id="Humidity" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="SoilPercent">Soil Moisture Content (Percentage)</label>
+                <input type="number" step="any" name="SoilPercent" id="SoilPercent" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="RawSoil">Raw Soil Sensor Value</label>
+                <input type="number" step="any" name="RawSoil" id="RawSoil" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Ax">Accelerometer X-Axis (Linear Motion)</label>
+                <input type="number" step="any" name="Ax" id="Ax" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Ay">Accelerometer Y-Axis (Linear Motion)</label>
+                <input type="number" step="any" name="Ay" id="Ay" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Az">Accelerometer Z-Axis (Linear Motion)</label>
+                <input type="number" step="any" name="Az" id="Az" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Gx">Gyroscope X-Axis (Tilting Motion)</label>
+                <input type="number" step="any" name="Gx" id="Gx" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Gy">Gyroscope Y-Axis (Tilting Motion)</label>
+                <input type="number" step="any" name="Gy" id="Gy" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Gz">Gyroscope Z-Axis (Tilting Motion)</label>
+                <input type="number" step="any" name="Gz" id="Gz" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Angle">Slope Angle Configuration (Degrees)</label>
+                <input type="number" step="any" name="Angle" id="Angle" required autocomplete="off" placeholder="Example: 30, 45, or 60">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1.1rem; font-weight: 600;">Calculate Landslide Risk</button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="result-card {{ prediction.lower().replace(' ', '') }}">
+            <h2>Prediction Result: <span>{{ prediction }}</span></h2>
+            <p>Based on the provided sensor data at a {{ angle }}° angle, the current slope condition is estimated as <strong>{{ prediction }}</strong>.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Best Model Used: {{ best_model_name }}</p>
+        </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Landslide Prediction Project.</p>
+    </footer>
+</body>
+</html>

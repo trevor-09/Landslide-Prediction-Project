@@ -7,10 +7,11 @@ import tensorflow as tf
 
 app = Flask(__name__)
 
-# Paths
-DATA_DIR = r"c:\Users\annaa\Downloads\Landslide"
-MODEL_DIR = os.path.join(DATA_DIR, "models")
-STATIC_DIR = os.path.join(DATA_DIR, "static")
+# Dynamic Paths for Local and Cloud (Render) compatibility
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = BASE_DIR
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 # Simplified English explanations for Project Report (professional and easy)
 EXPLANATIONS = {
